@@ -1,0 +1,114 @@
+<!-- banner -->
+<section class="banner layer" id="home">
+	<div class="container">
+		<div class="banner-text">
+			<div class="slider-info mb-4">
+				<div class="banner-heading">
+					<h3>Celebrate With Us</h3>
+					<h4 style="color:white;">We hope you’ll join us for this special day.<h4><br>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<!-- //banner -->
+
+<div class="row justify-content-center" ng-if="!login.verified" style="background-color: #c0d0d0;padding-top: 50px;padding-bottom: 300px;">
+    <form class="md-inline-form">
+        <div layout="row" layout-wrap>
+            <md-input-container>
+                <label>First name</label>
+                <input ng-model="login.firstName">
+            </md-input-container>
+            <md-input-container>
+                <label>Last name</label>
+                <input ng-model="login.lastName">
+            </md-input-container>
+        </div>
+        <div layout="row" layout-wrap>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="login.password">
+            </md-input-container>
+            
+        </div>
+        <md-button class="md-raised next-btn" ng-click="verifyLogin();">Submit</md-button>
+        <label style="color: tomato;" ng-if="login.invalid">Invalid login</label>
+    </form>
+</div>
+
+<div class="row justify-content-center" ng-if="login.verified" style="background-color: #c0d0d0;padding-top: 50px;padding-bottom: 300px;">
+    <br><br>
+    <form class="md-inline-form">
+        <div layout="row" layout-wrap>
+            <md-input-container>
+                <label>First name</label>
+                <input ng-model="guestInfo.firstName">
+            </md-input-container>
+            <md-input-container>
+                <label>Last name</label>
+                <input ng-model="guestInfo.lastName">
+            </md-input-container>
+        </div>
+        <div layout="row" layout-wrap>
+            <md-input-container>
+                <label>Email</label>
+                <input ng-model="guestInfo.email" type="email" ng-required="true" aria-label="Email (required)" style="width: 200%;">
+            </md-input-container>
+        </div>
+        <div layout="row" layout-wrap>
+            <md-input-container>
+                <label>Will you be attending?</label>
+                <md-select ng-model="guestInfo.attending" ng-required="true" style="width: 300px;">
+                    <md-option value="1">Yes</md-option>
+                    <md-option value="0">No</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <br>
+        <div ng-if="guestInfo.attending == 1 && guestInfo.sigOtherAllowed == 1">
+            <label>Will you be bringing a guest?</label><br>
+            <md-radio-group ng-model="guestInfo.significant_other">
+                <md-radio-button value="1">Yes</md-radio-button>
+                <md-radio-button value="0">No</md-radio-button>
+            </md-radio-group>
+        </div>
+        <br>
+        <div ng-if="guestInfo.attending == 1 && guestInfo.significant_other == 1">
+            <label>Name of Guest</label><br>
+            <md-input-container>
+                <label>First Name</label>
+                <input ng-model="" ng-required="true">
+            </md-input-container>
+            <md-input-container>
+                <label>Last Name</label>
+                <input ng-model="" ng-required="true">
+            </md-input-container>
+        </div>
+        <!-- <div layout-wrap ng-if="guestInfo.numKidsAllowed > 0 && guestInfo.attending == 1">
+            <label>How many additional guests will you be bringing?</label><br>
+            <md-input-container>
+                <label>Number of additional guests</label>
+                <md-select ng-model="numKids" ng-required="true" style="width: 300px;">
+                    <md-option ng-repeat="n in guestInfo.kidArray" ng-value="n">{{n}}</md-option>
+                </md-select>
+            </md-input-container>
+        </div> -->
+        <br>
+        <label ng-if="guestInfo.numKidsAllowed > 0 && guestInfo.attending == 1">Please list any additional guests here</label>
+        <div layout="row" layout-wrap ng-if="guestInfo.numKidsAllowed > 0 && guestInfo.attending == 1" ng-repeat = "n in guestInfo.kidArray | limitTo:guestInfo.numKidsAllowed">
+            <br>
+            <label>Name of Guest {{n + 1}}</label><br>
+            <md-input-container>
+                <label>First Name</label>
+                <input ng-model="">
+            </md-input-container>
+            <md-input-container>
+                <label>Last Name</label>
+                <input ng-model="">
+            </md-input-container>
+        </div>
+        <md-button class="md-raised next-btn" ng-click="">submit</md-button>
+    </form>
+</div>

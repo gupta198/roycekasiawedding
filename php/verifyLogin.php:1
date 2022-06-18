@@ -1,0 +1,25 @@
+<?php
+    $postdata = file_get_contents("php://input");
+    $request = json_decode($postdata);
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=wedding", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT password FROM invites WHERE firstName = '$request->firstName' AND lastName = '$request->lastName';";
+        $result = $conn->query($sql);
+        $serverPassword = $result->fetch();
+        if ($serverPassword['password'] != $request->password || $serverPassword['password'] == "") {
+            echo json_encode(false);
+        } else {
+            $sql = "SELECT * FROM invites WHERE firstName = '$request->firstName' AND lastName = '$request->lastName';";
+            $result = $conn->query($sql);
+            echo json_encode($result->fetch());
+        }
+        $conn = null; 
+      } catch(PDOException $e) {
+        //echo "Connection failed: " . $e->getMessage();
+        echo json_encode(false);
+      }    
+?>

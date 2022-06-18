@@ -1,0 +1,111 @@
+<!-- banner -->
+<section class="banner layer" id="home">
+	<div class="container">
+		<div class="banner-text">
+			<div class="slider-info mb-4">
+				<div class="banner-heading">
+					<h3>Celebrate With Us</h3>
+					<h4 style="color:white;">We hope you’ll join us for this special day.<h4><br>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- //banner -->
+
+<section class="Intro py-5" id="intro" style="background-color: white;">
+    <h4 style="text-align: center;">We look forward to seeing you! Fill out form below.
+        <br>Please RSVP by February 28th, 2022.</h4>
+</section>
+
+<div class="row justify-content-center" ng-if="!login.verified" style="background-color: white;padding-top: 50px;">
+    <form class="md-inline-form">
+        <md-input-container>
+            <label>Invitation ID</label>
+            <input ng-model="login.password">
+        </md-input-container>
+        <md-button class="md-raised next-btn" ng-click="verifyLogin();">Submit</md-button>
+        <label style="color: tomato;" ng-if="login.invalid">Invalid login</label>
+    </form>
+    <img src="images/IMG_3174.jpg"  ng-if="image" style="object-fit: contain; height: 500px;">
+</div>
+
+<div class="row justify-content-center" ng-if="login.verified" style="background-color: white;padding-top: 50px;">
+    <br><br>
+    <form class="md-inline-form">
+        <table>
+            <tr>
+                <td style="padding: 10px;">{{guestInfo.firstName1}} {{guestInfo.lastName1}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <md-radio-group ng-model="guestInfo.attending1">
+                        <md-radio-button value="1">Attend in person</md-radio-button>
+                        <md-radio-button value="2">Attend livestream</md-radio-button>
+                        <md-radio-button value="0">Decline</md-radio-button>
+                    </md-radio-group>
+                </td>
+            </tr>
+            <tr style="height: 10px;"></tr>
+            <tr ng-if="guestInfo.firstName2">
+                <td style="padding: 10px;">{{guestInfo.firstName2}} {{guestInfo.lastName2}}</td>
+            </tr>
+            <tr ng-if="guestInfo.firstName2">
+                <td>
+                    <md-radio-group ng-model="guestInfo.attending2">
+                        <md-radio-button value="1">Attend in person</md-radio-button>
+                        <md-radio-button value="2">Attend livestream</md-radio-button>
+                        <md-radio-button value="0">Decline</md-radio-button>
+                    </md-radio-group>
+                </td>
+            </tr>
+        </table>
+        
+       
+
+        <md-input-container>
+            <label>Email</label>
+            <input ng-model="guestInfo.email" type="email" ng-required="true" aria-label="Email (required)" style="width: 200%;">
+        </md-input-container>
+
+        <div ng-if="guestInfo.firstName1=='Elijah'">
+            Please confirm that you are a human<br>
+            <img src="images/color-blind-test.png" style="width: 300px;height: auto;"><br> 
+            <md-input-container>
+                <label>Number in image</label>
+                <input ng-model="colorblind" ng-required="true" aria-label="This is required">
+            </hmd-input-container>
+            <audio autoplay>
+                <source src="images/rick.mp3" type="audio/mpeg">
+            </audio> 
+        </div>
+
+        <br>
+        <label ng-if="guestInfo.numKidsAllowed == 1">Please list name of child, if attending</label>
+        <label ng-if="guestInfo.numKidsAllowed > 1">Please list the names of any accompanying children</label>
+        <div ng-if="guestInfo.numKidsAllowed >= 1" ng-repeat = "n in guestInfo.kidArray track by $index">
+            <label ng-if="guestInfo.numKidsAllowed > 1">Name of Child {{$index + 1}}</label><br>
+            <md-input-container>
+                <label>First Name</label>
+                <input ng-model="guestInfo.kidArray[$index].first">
+            </md-input-container>
+            <md-input-container>
+                <label>Last Name</label>
+                <input ng-model="guestInfo.kidArray[$index].last">
+            </md-input-container>
+        </div>
+        <md-button class="md-raised next-btn" ng-click="saveRsvp();">submit</md-button><br>
+        <label style="color: tomato;" ng-if="saved">Your response has been recorded!</label>
+    </form>
+    <section class="Intro py-5" id="intro" style="background-color: white; padding-right: 20%; padding-left: 20%;">
+        <h4 style="text-align: center;">
+        We ask that our guests refrain from using cell phones during the ceremony to take photos 
+        or to post on social media.
+        </h4>
+    </section>
+</div>
+<section class="Intro py-5" id="intro" style="background-color: white; padding-right: 20%; padding-left: 20%;">
+    <h4 style="text-align: center;">
+    Dress code: formal or black tie optional
+    </h4>
+</section>

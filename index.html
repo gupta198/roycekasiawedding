@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Royce and Kasia's Wedding</title>
+	
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<!--// Meta tag Keywords -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-messages.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.js"></script>
+	<script src="js/jk-carousel.min.js?v=1.0"></script>
+	<script src="js/app.js?v=1.2.0"></script> 
+    
+	<!-- css files -->
+	<link rel="stylesheet" href="css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="css/style.css?v=1.1" type="text/css" media="all" /> <!-- Style-CSS --> 
+	<link rel="stylesheet" href="css/jk-carousel.min.css" />
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.1/angular-material.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css"> <!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+
+	<!--web font-->
+	<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+	<!--//web font-->
+
+</head>
+
+<body ng-app="app" ng-controller="controller" style="min-height: 100vh; display: flex; flex-direction: column;">
+	<!-- header -->
+	<header>
+		<div class="container">
+			<!-- nav -->
+			<nav class="py-3">
+			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+			<input type="checkbox" id="drop" />
+				<ul class="menu mt-2">
+					<li class="mr-lg-3 mr-2" ng-class="getClass('/home');"><a href="#!home">Home</a></li>
+					<li class="mr-lg-3 mr-2" ng-class="getClass('/reception');"><a href="#!reception">April 30 Reception</a></li>
+					<!-- <li class="mr-lg-3 mr-2"><a href="#!story">Our Story</a></li> -->
+					<li class="mr-lg-3 mr-2" ng-class="getClass('/party');"><a href="#!party">Wedding Party</a></li>
+					<li class="mr-lg-3 mr-2" ng-class="getClass('/accomodations');"><a href="#!accomodations">Accomodations</a></li>
+					<li class="mr-lg-3 mr-2" ng-class="getClass('/registry');"><a href="#!registry">The Registry</a></li>
+					<li class="mr-lg-3 mr-2" ng-class="getClass('/rsvp');"><a href="#!rsvp">RSVP</a></li>
+					<li class="mr-lg-3 mr-2" ng-class="getClass('/stream');"><a href="#!stream">Live Stream</a></li>
+				</ul>
+			</nav>
+			<!-- //nav -->
+		</div>
+	</header>
+	<!-- //header -->
+	<ng-view></ng-view>
+</body>
+	<footer style="margin-top: auto; background-color: #828e73;padding: 50px; text-align: center;">
+		<h3 style="font-family: baskerville-display-pt; font-weight: 500; color: black;">Kasia & Royce</h3> <br>
+	</footer>
+</html>
